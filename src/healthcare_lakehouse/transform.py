@@ -5,7 +5,7 @@ from __future__ import annotations
 import hashlib
 import json
 from collections import Counter, defaultdict
-from datetime import UTC, date, datetime
+from datetime import date, datetime, timezone
 from typing import Any
 
 from healthcare_lakehouse.fhir_io import FhirResource
@@ -15,7 +15,7 @@ Row = dict[str, Any]
 
 
 def now_utc() -> str:
-    return datetime.now(UTC).isoformat(timespec="seconds")
+    return datetime.now(timezone.utc).isoformat(timespec="seconds")
 
 
 def stable_int(value: str | None, modulus: int = 2_147_483_647) -> int | None:
