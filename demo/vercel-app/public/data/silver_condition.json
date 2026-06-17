@@ -1,0 +1,35 @@
+[
+  {
+    "clinical_status": "Active",
+    "condition_code": "44054006",
+    "condition_display": "Type 2 diabetes mellitus",
+    "condition_id": "cond-001",
+    "condition_system": "http://snomed.info/sct",
+    "encounter_id": "enc-001",
+    "onset_datetime": "2024-07-15T00:00:00Z",
+    "patient_id": "patient-001",
+    "recorded_date": "2026-03-04T09:20:00Z"
+  },
+  {
+    "clinical_status": "Active",
+    "condition_code": "38341003",
+    "condition_display": "Hypertensive disorder, systemic arterial",
+    "condition_id": "cond-002",
+    "condition_system": "http://snomed.info/sct",
+    "encounter_id": "enc-002",
+    "onset_datetime": null,
+    "patient_id": "patient-002",
+    "recorded_date": "2026-03-17T18:30:00Z"
+  },
+  {
+    "clinical_status": "Active",
+    "condition_code": "195967001",
+    "condition_display": "Asthma",
+    "condition_id": "cond-003",
+    "condition_system": "http://snomed.info/sct",
+    "encounter_id": "enc-003",
+    "onset_datetime": null,
+    "patient_id": "patient-003",
+    "recorded_date": "2026-03-22T10:35:00Z"
+  }
+]

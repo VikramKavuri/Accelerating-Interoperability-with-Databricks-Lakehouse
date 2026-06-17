@@ -1,0 +1,14 @@
+[
+  {
+    "average_claim_amount": 1220.5,
+    "claim_count": 1,
+    "condition_display": "Hypertensive disorder, systemic arterial",
+    "total_claim_amount": 1220.5
+  },
+  {
+    "average_claim_amount": 350.75,
+    "claim_count": 1,
+    "condition_display": "Type 2 diabetes mellitus",
+    "total_claim_amount": 350.75
+  }
+]

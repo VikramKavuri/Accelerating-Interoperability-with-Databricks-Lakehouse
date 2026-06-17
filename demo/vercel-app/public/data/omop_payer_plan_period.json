@@ -1,0 +1,23 @@
+[
+  {
+    "payer_plan_period_id": 1784006227,
+    "payer_source_value": "Professional",
+    "period_start_date": "2026-03-05",
+    "person_id": 706755092,
+    "plan_source_value": "professional"
+  },
+  {
+    "payer_plan_period_id": 1771596963,
+    "payer_source_value": "Institutional",
+    "period_start_date": "2026-03-18",
+    "person_id": 928721856,
+    "plan_source_value": "institutional"
+  },
+  {
+    "payer_plan_period_id": 1815789399,
+    "payer_source_value": "Professional",
+    "period_start_date": "2026-03-23",
+    "person_id": 1280122924,
+    "plan_source_value": "professional"
+  }
+]

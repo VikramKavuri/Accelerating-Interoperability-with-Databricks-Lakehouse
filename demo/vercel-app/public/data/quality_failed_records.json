@@ -1,0 +1,19 @@
+[
+  {
+    "batch_id": "local-demo-001",
+    "check_name": "claim_amount_non_negative",
+    "checked_at": "2026-06-17T09:19:57+00:00",
+    "failed_record": {
+      "amount": -25.0,
+      "claim_id": "claim-003",
+      "claim_type_code": "professional",
+      "claim_type_display": "Professional",
+      "created_date": "2026-03-23",
+      "currency": "USD",
+      "patient_id": "patient-003",
+      "provider_id": "prac-evans",
+      "status": "active"
+    },
+    "table_name": "silver_claim"
+  }
+]

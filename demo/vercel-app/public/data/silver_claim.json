@@ -1,0 +1,35 @@
+[
+  {
+    "amount": 350.75,
+    "claim_id": "claim-001",
+    "claim_type_code": "professional",
+    "claim_type_display": "Professional",
+    "created_date": "2026-03-05",
+    "currency": "USD",
+    "patient_id": "patient-001",
+    "provider_id": "prac-evans",
+    "status": "active"
+  },
+  {
+    "amount": 1220.5,
+    "claim_id": "claim-002",
+    "claim_type_code": "institutional",
+    "claim_type_display": "Institutional",
+    "created_date": "2026-03-18",
+    "currency": "USD",
+    "patient_id": "patient-002",
+    "provider_id": "org-northstar",
+    "status": "active"
+  },
+  {
+    "amount": -25.0,
+    "claim_id": "claim-003",
+    "claim_type_code": "professional",
+    "claim_type_display": "Professional",
+    "created_date": "2026-03-23",
+    "currency": "USD",
+    "patient_id": "patient-003",
+    "provider_id": "prac-evans",
+    "status": "active"
+  }
+]

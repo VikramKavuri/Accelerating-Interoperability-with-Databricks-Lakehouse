@@ -1,0 +1,16 @@
+[
+  {
+    "city": "Chicago",
+    "provider_id": "org-northstar",
+    "provider_name": "Northstar Community Hospital",
+    "provider_type": "Organization",
+    "state": "IL"
+  },
+  {
+    "city": null,
+    "provider_id": "prac-evans",
+    "provider_name": "Maya Evans",
+    "provider_type": "Practitioner",
+    "state": null
+  }
+]

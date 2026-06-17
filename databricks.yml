@@ -1,0 +1,28 @@
+bundle:
+  name: healthcare-fhir-to-omop-lakehouse
+
+include:
+  - resources/jobs/*.yml
+
+variables:
+  target_catalog:
+    description: Unity Catalog catalog for pipeline tables.
+    default: adb_healthcare_fhir_omop_dev
+  target_schema:
+    description: Schema/database for Bronze, Silver, quality, OMOP, and Gold tables.
+    default: healthcare_fhir_omop_dev
+  fhir_source_path:
+    description: Cloud or workspace path containing FHIR JSON/NDJSON files.
+    default: /Volumes/adb_healthcare_fhir_omop_dev/healthcare_fhir_omop_dev/raw/fhir-small
+
+targets:
+  dev:
+    mode: development
+    default: true
+    workspace:
+      root_path: /Workspace/Users/${workspace.current_user.userName}/.bundle/${bundle.name}/${bundle.target}
+
+  prod:
+    mode: production
+    workspace:
+      root_path: /Shared/.bundle/${bundle.name}/${bundle.target}

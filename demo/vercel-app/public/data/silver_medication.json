@@ -1,0 +1,24 @@
+[
+  {
+    "authored_on": "2026-03-04T09:40:00Z",
+    "encounter_id": "enc-001",
+    "intent": "order",
+    "medication_code": "860975",
+    "medication_display": "Metformin hydrochloride 500 MG Oral Tablet",
+    "medication_request_id": "medreq-001",
+    "medication_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+    "patient_id": "patient-001",
+    "status": "active"
+  },
+  {
+    "authored_on": "2026-03-17T20:00:00Z",
+    "encounter_id": "enc-002",
+    "intent": "order",
+    "medication_code": "314076",
+    "medication_display": "Lisinopril 10 MG Oral Tablet",
+    "medication_request_id": "medreq-002",
+    "medication_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+    "patient_id": "patient-002",
+    "status": "active"
+  }
+]

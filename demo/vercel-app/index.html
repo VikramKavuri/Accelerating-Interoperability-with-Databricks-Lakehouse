@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FHIR-to-OMOP Lakehouse Demo</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="brand">
+        <div class="brand-mark">FHIR</div>
+        <div>
+          <h1>FHIR-to-OMOP Lakehouse</h1>
+          <p id="run-line">Loading pipeline run</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <span class="demo-badge">Static sample export</span>
+        <span class="quality-badge" id="quality-badge">Quality pending</span>
+        <a class="repo-link" href="https://github.com/VikramKavuri/Accelerating-Interoperability-with-Databricks-Lakehouse">GitHub</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="toolbar" aria-label="Demo controls">
+        <label>
+          <span>Table</span>
+          <select id="table-select"></select>
+        </label>
+        <label class="file-picker">
+          <span>Local file preview only</span>
+          <input id="file-input" type="file" accept=".json,.ndjson,application/json" multiple>
+        </label>
+        <div class="upload-preview" id="upload-preview">No local file selected</div>
+      </section>
+
+      <section class="metrics" id="metrics" aria-label="Pipeline metrics"></section>
+
+      <section class="pipeline" aria-label="Lakehouse flow">
+        <div class="stage bronze">
+          <span>Bronze</span>
+          <strong id="bronze-count">0</strong>
+          <small>raw resources</small>
+        </div>
+        <div class="stage silver">
+          <span>Silver</span>
+          <strong id="silver-count">0</strong>
+          <small>clinical rows</small>
+        </div>
+        <div class="stage quality">
+          <span>Quality</span>
+          <strong id="quality-count">0</strong>
+          <small>checks run</small>
+        </div>
+        <div class="stage omop">
+          <span>OMOP</span>
+          <strong id="omop-count">0</strong>
+          <small>mapped rows</small>
+        </div>
+        <div class="stage gold">
+          <span>Gold</span>
+          <strong id="gold-count">0</strong>
+          <small>analytics rows</small>
+        </div>
+      </section>
+
+      <section class="analytics-grid">
+        <article class="panel">
+          <div class="panel-title">
+            <h2>Condition Prevalence</h2>
+            <span>Gold</span>
+          </div>
+          <div class="bar-list" id="condition-bars"></div>
+        </article>
+        <article class="panel">
+          <div class="panel-title">
+            <h2>Claim Cost</h2>
+            <span>Quality-filtered</span>
+          </div>
+          <div class="bar-list" id="claim-bars"></div>
+        </article>
+      </section>
+
+      <section class="panel table-panel">
+        <div class="panel-title">
+          <h2 id="table-title">Table</h2>
+          <span id="row-count">0 rows</span>
+        </div>
+        <div class="table-wrap">
+          <table id="data-table"></table>
+        </div>
+      </section>
+
+      <section class="analytics-grid">
+        <article class="panel">
+          <div class="panel-title">
+            <h2>Quality Gates</h2>
+            <span id="quality-summary">0 failures</span>
+          </div>
+          <div class="quality-list" id="quality-list"></div>
+        </article>
+        <article class="panel">
+          <div class="panel-title">
+            <h2>SQL Evidence</h2>
+            <span>Databricks SQL</span>
+          </div>
+          <pre class="sql-sample">SELECT condition_display, age_group, patient_count
+FROM gold_condition_prevalence
+ORDER BY patient_count DESC;
+
+SELECT check_name, status, failed_count
+FROM quality_check_results
+ORDER BY status DESC, check_name;</pre>
+        </article>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

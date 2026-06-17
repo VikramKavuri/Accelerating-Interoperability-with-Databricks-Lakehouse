@@ -1,614 +1,195 @@
-# 🏥 Healthcare Interoperability Accelerator: FHIR Analytics on Databricks Lakehouse
+# Healthcare Interoperability Lakehouse: FHIR-to-OMOP Data Engineering Pipeline on Databricks
 
-<div align="center">
+Production-style Databricks healthcare lakehouse pipeline that ingests synthetic FHIR JSON/NDJSON, preserves raw records in Bronze Delta tables, parses clinical resources into Silver tables, maps a focused OMOP-style model, applies data quality checks, publishes Gold analytics tables, and exposes a Vercel-ready demo with small-dataset outputs.
 
-![Databricks](https://img.shields.io/badge/Databricks-FF3621?style=for-the-badge&logo=databricks&logoColor=white)
-![Apache Spark](https://img.shields.io/badge/Apache%20Spark-E25A1C?style=for-the-badge&logo=apache-spark&logoColor=white)
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![FHIR](https://img.shields.io/badge/HL7%20FHIR-EB2027?style=for-the-badge&logo=hl7&logoColor=white)
-![MLflow](https://img.shields.io/badge/MLflow-0194E2?style=for-the-badge&logo=mlflow&logoColor=white)
+This is a portfolio-grade engineering project using synthetic data. It does not claim HIPAA compliance or full OMOP CDM conformance.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-![Healthcare](https://img.shields.io/badge/Industry-Healthcare-blue)
-![HIPAA](https://img.shields.io/badge/HIPAA-Compliant-green)
-![Status](https://img.shields.io/badge/Status-Production%20Ready-brightgreen)
-[![GitHub stars](https://img.shields.io/github/stars/yourusername/healthcare-databricks-lakehouse?style=social)](https://github.com/yourusername/healthcare-databricks-lakehouse)
+## Why This Project
 
-**Transform Complex Healthcare Data into Life-Saving Insights** 💊
+The project follows Databricks medallion architecture: Bronze for raw ingestion and auditability, Silver for validation and normalization, and Gold for BI-ready reporting.
 
-**From FHIR to ML Predictions in Minutes, Not Months!**
+It is shaped by:
 
-[Live Demo](#-live-demo) · [Architecture](#-architecture) · [Quick Start](#-quick-start) · [Use Cases](#-use-cases)
+- Databricks lakehouse and FHIR accelerator patterns for extracting nested healthcare resources into analytics tables.
+- Databricks omop-cdm: OMOP CDM setup, ETL, cohort analysis, drug analysis, and sample queries on Databricks.
+- Databricks Bundles: source-controlled YAML workflows for deployable Databricks jobs.
 
-<img src="https://github.com/QuentinAmbard/databricks-demo/raw/main/hls/resources/dbinterop/hls-dbiginte-lakehouse.png" width="900px" />
+## Repository Structure
 
-</div>
+| Path | Purpose |
+| --- | --- |
+| `src/healthcare_lakehouse/` | Local stdlib pipeline used for tests and Vercel demo artifact generation. |
+| `databricks/notebooks/` | Spark/Delta notebook exports for the production-style Databricks workflow. |
+| `databricks.yml` and `resources/jobs/` | Databricks Bundle and multi-task job definition. |
+| `sampledata/fhir-small/` | Tiny synthetic FHIR JSON/NDJSON dataset for reproducible local runs. |
+| `demo/vercel-app/` | Static Vercel demo that renders exported pipeline tables and quality evidence. |
+| `sql/` | OMOP-style DDL and dashboard SQL examples. |
+| `docs/` | Architecture, data model, runbook, validation evidence plan, source data plan, and limitations. |
+| `tests/` | Local pipeline regression tests. |
+| `RUNME.py` | Local smoke-test entry point that regenerates static demo data. |
 
----
-
-## 🌟 The Healthcare Data Challenge We Solve
-
-<table>
-<tr>
-<td width="50%">
-
-### 😔 **The Problem**
-- **80% of healthcare data** is unstructured
-- FHIR format is **nested JSON nightmare** for analysts
-- Manual data prep takes **weeks per project**
-- Critical insights **buried in complexity**
-- Predictive models **lack explainability**
-
-</td>
-<td width="50%">
-
-### 🎯 **Our Solution**
-- **Automated FHIR ingestion** in minutes
-- **SQL-ready tables** from complex JSON
-- **Patient-360 views** instantly available
-- **ML predictions** with full transparency
-- **HIPAA-compliant** architecture
-
-</td>
-</tr>
-</table>
-
----
-
-## 💡 Why This Matters
-
-<div align="center">
-
-### **Real Impact on Patient Care**
-
-| Metric | Before | After | Impact |
-|--------|--------|-------|---------|
-| **Time to Insights** | 2-3 weeks | 2-3 hours | **90% faster** |
-| **Data Accessibility** | Engineers only | All analysts | **10x more users** |
-| **Prediction Accuracy** | ~70% | ~92% | **Better outcomes** |
-| **Cost per Analysis** | $50,000 | $5,000 | **90% savings** |
-| **Patient Risk Detection** | Reactive | Proactive | **Lives saved** |
-
-</div>
-
----
-
-## 🏗️ Solution Architecture
-
-### End-to-End Data Flow
+## Architecture
 
 ```mermaid
-flowchart TB
-    subgraph "Data Sources"
-        A[EHR Systems]
-        B[Medical Devices]
-        C[Lab Results]
-    end
-    
-    subgraph "FHIR Ingestion"
-        D[FHIR Bundles<br/>Nested JSON]
-        E[dbignite<br/>Parser]
-    end
-    
-    subgraph "Databricks Lakehouse"
-        F[(Bronze Layer<br/>Raw FHIR)]
-        G[(Silver Layer<br/>Cleaned Data)]
-        H[(Gold Layer<br/>Patient Analytics)]
-    end
-    
-    subgraph "Analytics & ML"
-        I[Patient Dashboards]
-        J[Risk Predictions]
-        K[SHAP Explainability]
-    end
-    
-    subgraph "Outcomes"
-        L[Clinical Decisions]
-        M[Population Health]
-        N[Research Insights]
-    end
-    
-    A --> D
-    B --> D
-    C --> D
-    D --> E
-    E --> F
-    F -->|Transform| G
-    G -->|Aggregate| H
-    H --> I
-    H --> J
-    J --> K
-    I --> L
-    J --> M
-    K --> N
-    
-    style D fill:#ff9999
-    style E fill:#99ccff
-    style J fill:#99ff99
-    style K fill:#ffcc99
+flowchart LR
+    A[FHIR JSON/NDJSON] --> B[Bronze Delta raw resources]
+    B --> C[Silver clinical resources]
+    C --> D[Quality checks]
+    C --> E[OMOP-style subset]
+    D --> F[Quality evidence]
+    E --> G[Gold analytics tables]
+    G --> H[Databricks SQL dashboards]
+    G --> I[Vercel demo export]
+    F --> I
 ```
 
----
+## Tables
 
-## 🚀 Quick Start Guide
+Bronze:
 
-### Prerequisites
+- `bronze_fhir_resources`
+- `bronze_ingestion_audit`
+- `bronze_rejected_records`
 
-<div align="center">
+Silver:
 
-| Requirement | Version | Purpose |
-|------------|---------|---------|
-| **Databricks Workspace** | Runtime 12.0+ | Core platform |
-| **Python** | 3.8+ | Scripting |
-| **dbignite** | Latest | FHIR parsing |
-| **MLflow** | 2.0+ | Model tracking |
-| **SHAP** | 0.41+ | Model explainability |
+- `silver_patient`
+- `silver_encounter`
+- `silver_condition`
+- `silver_observation`
+- `silver_medication`
+- `silver_claim`
+- `silver_procedure`
+- `silver_provider`
 
-</div>
+Quality:
 
-### 🏃‍♂️ Get Running in 5 Steps!
+- `quality_check_results`
+- `quality_failed_records`
+- `quality_run_summary`
 
-#### Step 1: Clone and Setup
+OMOP-style:
+
+- `omop_person`
+- `omop_visit_occurrence`
+- `omop_condition_occurrence`
+- `omop_measurement`
+- `omop_drug_exposure`
+- `omop_procedure_occurrence`
+- `omop_payer_plan_period`
+
+Gold:
+
+- `gold_patient_summary`
+- `gold_condition_prevalence`
+- `gold_encounter_utilization`
+- `gold_claim_cost_summary`
+- `gold_medication_usage`
+- `gold_population_health_cohort`
+
+## Local Run
+
+Generate the Vercel demo artifacts from the bundled small dataset:
 
 ```bash
-# Clone the repository
-git clone https://github.com/yourusername/healthcare-databricks-lakehouse.git
-cd healthcare-databricks-lakehouse
-
-# Install requirements
-pip install -r requirements.txt
+python3 scripts/run_local_pipeline.py
 ```
 
-#### Step 2: Configure Databricks
-
-```python
-# databricks-config.py
-DATABRICKS_HOST = "https://your-workspace.databricks.com"
-DATABRICKS_TOKEN = "your-token"
-CATALOG = "healthcare_catalog"
-SCHEMA = "patient_analytics"
-```
-
-#### Step 3: Install dbignite
+Run checks:
 
 ```bash
-# In Databricks notebook
-%pip install dbignite
-dbutils.library.restartPython()
+python3 -m unittest discover -s tests
+python3 -m py_compile RUNME.py 00-README.py scripts/run_local_pipeline.py src/healthcare_lakehouse/*.py databricks/notebooks/*.py
 ```
 
-#### Step 4: Ingest FHIR Data
+Expected local demo result:
 
-```python
-# 01_fhir_ingestion.py
-from dbignite import FHIRParser
+- 20 Bronze FHIR resources
+- 3 patients
+- 3 encounters
+- 3 conditions
+- 2 population-health cohort members
+- 8 quality checks
+- 1 intentional failed quality record for a negative claim amount
 
-# Initialize parser
-parser = FHIRParser(spark)
+## Vercel Demo
 
-# Load FHIR bundles
-fhir_df = spark.read.json("s3://your-bucket/fhir-bundles/")
+Live demo:
 
-# Parse into tables
-patients = parser.parse_patients(fhir_df)
-encounters = parser.parse_encounters(fhir_df)
-conditions = parser.parse_conditions(fhir_df)
-observations = parser.parse_observations(fhir_df)
+https://vercel-app-brown-delta.vercel.app
 
-# Save to Delta tables
-patients.write.mode("overwrite").saveAsTable("bronze.patients")
-encounters.write.mode("overwrite").saveAsTable("bronze.encounters")
-```
-
-#### Step 5: Run Analytics Pipeline
-
-```python
-# 02_patient_analytics.py
-# Create patient cohort
-covid_patients = spark.sql("""
-    SELECT DISTINCT p.*
-    FROM silver.patients p
-    JOIN silver.conditions c ON p.patient_id = c.patient_id
-    WHERE c.code_display LIKE '%COVID%'
-""")
-
-# Run ML pipeline
-from pipelines.ml_pipeline import PatientRiskModel
-model = PatientRiskModel()
-predictions = model.predict(covid_patients)
-```
-
----
-
-## 📊 Data Processing Pipeline
-
-### 🔄 Three-Layer Medallion Architecture
-
-<div align="center">
-
-<img src="https://github.com/QuentinAmbard/databricks-demo/raw/main/hls/resources/dbinterop/hls-patient-dashboard.png" width="800px" />
-
-</div>
-
-| Layer | Purpose | Data Format | Processing |
-|-------|---------|-------------|------------|
-| **🥉 Bronze** | Raw FHIR ingestion | Nested JSON | Schema validation |
-| **🥈 Silver** | Cleaned & standardized | Flattened tables | De-duplication, normalization |
-| **🥇 Gold** | Analytics-ready | Patient-centric views | Aggregations, features |
-
-### Sample FHIR to Table Transformation
-
-<table>
-<tr>
-<td width="50%">
-
-**Before: Complex FHIR JSON**
-```json
-{
-  "resourceType": "Bundle",
-  "entry": [{
-    "resource": {
-      "resourceType": "Patient",
-      "id": "123",
-      "name": [{
-        "family": "Smith",
-        "given": ["John"]
-      }],
-      "birthDate": "1970-01-01"
-    }
-  }]
-}
-```
-
-</td>
-<td width="50%">
-
-**After: Clean SQL Table**
-```sql
-SELECT * FROM gold.patients;
-
-| patient_id | name       | birth_date | age |
-|------------|------------|------------|-----|
-| 123        | John Smith | 1970-01-01 | 54  |
-```
-
-</td>
-</tr>
-</table>
-
----
-
-## 🤖 Machine Learning Pipeline
-
-### Predictive Modeling with Explainability
-
-<div align="center">
-
-<img src="https://github.com/QuentinAmbard/databricks-demo/raw/main/hls/resources/dbinterop/hls-shap.png" width="800px" />
-
-</div>
-
-### Model Features
-
-```python
-# Feature engineering
-features = [
-    'age', 'gender', 'bmi',
-    'diabetes_flag', 'hypertension_flag',
-    'smoking_status', 'vaccination_status',
-    'social_vulnerability_index',
-    'previous_admissions_count',
-    'medication_count'
-]
-
-# Train model with MLflow tracking
-with mlflow.start_run():
-    model = XGBClassifier(n_estimators=100)
-    model.fit(X_train, y_train)
-    
-    # Log model
-    mlflow.sklearn.log_model(model, "hospitalization_risk_model")
-    
-    # Generate SHAP values
-    explainer = shap.TreeExplainer(model)
-    shap_values = explainer.shap_values(X_test)
-    
-    # Create explainability plot
-    shap.summary_plot(shap_values, X_test)
-```
-
-### 📈 Model Performance
-
-| Metric | Score | Benchmark |
-|--------|-------|-----------|
-| **Accuracy** | 92.3% | Industry: 85% |
-| **Precision** | 89.7% | Target: 85% |
-| **Recall** | 94.1% | Target: 90% |
-| **F1 Score** | 91.8% | Target: 87% |
-| **AUC-ROC** | 0.96 | Excellent |
-
----
-
-## 🎯 Use Cases & Applications
-
-### 1. COVID-19 Risk Stratification
-- **Identify high-risk patients** before symptoms worsen
-- **Allocate resources** based on predicted hospitalization needs
-- **Target interventions** for vulnerable populations
-
-### 2. Readmission Prevention
-- **Predict 30-day readmission** risk
-- **Trigger care coordination** for high-risk discharges
-- **Reduce penalties** from CMS readmission programs
-
-### 3. Population Health Management
-- **Track disease prevalence** across demographics
-- **Identify care gaps** in chronic disease management
-- **Optimize screening programs** based on risk factors
-
-### 4. Clinical Research
-- **Accelerate cohort identification** for trials
-- **Analyze real-world evidence** at scale
-- **Generate hypotheses** from EHR patterns
-
----
-
-## 📊 Analytics Dashboards
-
-### Patient 360° View
-
-```sql
--- Comprehensive patient profile
-CREATE OR REPLACE VIEW gold.patient_360 AS
-SELECT 
-    p.patient_id,
-    p.name,
-    p.age,
-    p.gender,
-    
-    -- Conditions
-    COUNT(DISTINCT c.condition_id) as condition_count,
-    STRING_AGG(c.code_display, ', ') as conditions,
-    
-    -- Encounters
-    COUNT(DISTINCT e.encounter_id) as encounter_count,
-    MAX(e.encounter_date) as last_visit,
-    
-    -- Risk Scores
-    ml.hospitalization_risk_score,
-    ml.readmission_risk_score,
-    
-    -- Social Determinants
-    sdoh.vulnerability_index,
-    sdoh.access_to_care_score
-    
-FROM gold.patients p
-LEFT JOIN gold.conditions c ON p.patient_id = c.patient_id
-LEFT JOIN gold.encounters e ON p.patient_id = e.patient_id
-LEFT JOIN gold.ml_predictions ml ON p.patient_id = ml.patient_id
-LEFT JOIN gold.social_determinants sdoh ON p.patient_id = sdoh.patient_id
-GROUP BY p.patient_id, p.name, p.age, p.gender, 
-         ml.hospitalization_risk_score, ml.readmission_risk_score,
-         sdoh.vulnerability_index, sdoh.access_to_care_score;
-```
-
-### Population Health Metrics
-
-```python
-# Population health dashboard
-import plotly.express as px
-
-# Disease prevalence by age group
-prevalence_df = spark.sql("""
-    SELECT 
-        age_group,
-        condition,
-        COUNT(*) as patient_count
-    FROM gold.patient_conditions
-    GROUP BY age_group, condition
-""").toPandas()
-
-fig = px.sunburst(
-    prevalence_df, 
-    path=['age_group', 'condition'], 
-    values='patient_count',
-    title='Disease Prevalence by Age Group'
-)
-fig.show()
-```
-
----
-
-## 🔒 Security & Compliance
-
-### HIPAA Compliance Features
-
-| Component | Implementation | Compliance |
-|-----------|---------------|------------|
-| **Encryption** | AES-256 at rest, TLS 1.2 in transit | ✅ HIPAA §164.312(a)(2)(iv) |
-| **Access Control** | Unity Catalog with RBAC | ✅ HIPAA §164.312(a)(1) |
-| **Audit Logging** | All queries logged | ✅ HIPAA §164.312(b) |
-| **De-identification** | PHI masking available | ✅ HIPAA §164.514(b) |
-| **Data Retention** | Automated policies | ✅ HIPAA §164.316(b)(2) |
-
-### Data Governance
-
-```python
-# Apply column-level security
-spark.sql("""
-    ALTER TABLE gold.patients 
-    ALTER COLUMN ssn SET MASKED WITH (FUNCTION = 'mask_ssn');
-    
-    ALTER TABLE gold.patients
-    ALTER COLUMN date_of_birth SET MASKED WITH (FUNCTION = 'mask_date');
-""")
-
-# Row-level security
-spark.sql("""
-    CREATE OR REPLACE FUNCTION patient_filter(user_id STRING)
-    RETURN patient_department = get_user_department(user_id);
-    
-    ALTER TABLE gold.patients
-    SET ROW FILTER patient_filter ON (current_user());
-""")
-```
-
----
-
-## 📈 Performance & Scalability
-
-### Benchmark Results
-
-| Dataset Size | Processing Time | Cost | Throughput |
-|-------------|-----------------|------|------------|
-| 1M patients | 2.5 minutes | $0.85 | 400K/min |
-| 10M patients | 18 minutes | $7.20 | 555K/min |
-| 100M patients | 2.8 hours | $68.00 | 595K/min |
-| 1B patients | 24 hours | $580.00 | 694K/min |
-
-### Optimization Techniques
-
-- **Z-Ordering** on frequently queried columns
-- **Adaptive Query Execution** for dynamic optimization
-- **Delta Lake caching** for repeated queries
-- **Photon acceleration** for 3x faster SQL
-
----
-
-## 🧪 Testing & Validation
-
-### Data Quality Checks
-
-```python
-# Automated data quality tests
-from great_expectations import DataContext
-
-context = DataContext()
-suite = context.create_expectation_suite("patient_data_quality")
-
-# Define expectations
-suite.expect_column_values_to_not_be_null("patient_id")
-suite.expect_column_values_to_be_between("age", 0, 120)
-suite.expect_column_values_to_match_regex("email", r"^[\w\.-]+@[\w\.-]+\.\w+$")
-
-# Run validation
-results = context.run_validation_operator(
-    "action_list_operator",
-    assets_to_validate=[patients_df]
-)
-```
-
----
-
-## 🗺️ Roadmap
-
-### Current Features ✅
-- [x] FHIR ingestion pipeline
-- [x] Patient analytics dashboard
-- [x] ML risk predictions
-- [x] SHAP explainability
-
-### Q1 2024 🚧
-- [ ] Real-time streaming with Kafka
-- [ ] Natural Language Processing for clinical notes
-- [ ] Integration with Epic/Cerner APIs
-
-### Q2 2024 🎯
-- [ ] Genomics data integration
-- [ ] Drug interaction analysis
-- [ ] Automated anomaly detection
-
-### Q3 2024 🚀
-- [ ] Multi-site federated learning
-- [ ] OMOP CDM support
-- [ ] Advanced time-series forecasting
-
----
-
-## 📚 Documentation
-
-- 📖 [Architecture Deep Dive](./docs/architecture.md)
-- 🏥 [FHIR Implementation Guide](./docs/fhir-guide.md)
-- 🤖 [ML Model Documentation](./docs/ml-models.md)
-- 📊 [Analytics Cookbook](./docs/analytics-cookbook.md)
-- 🔒 [Security & Compliance](./docs/security.md)
-- 🚀 [Performance Tuning](./docs/performance.md)
-
----
-
-## 🤝 Contributing
-
-We welcome contributions from the healthcare and data community!
+Serve locally:
 
 ```bash
-# Fork and clone
-git clone https://github.com/yourusername/healthcare-databricks-lakehouse.git
-
-# Create feature branch
-git checkout -b feature/clinical-nlp
-
-# Make changes and test
-pytest tests/
-
-# Submit PR
-git push origin feature/clinical-nlp
+cd demo/vercel-app
+python3 -m http.server 4173
 ```
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
+Open:
 
----
-
-## 📝 Citation
-
-If you use this project in your research, please cite:
-
-```bibtex
-@software{healthcare_lakehouse_2024,
-  author = {Kavuri, Vikram},
-  title = {Healthcare Interoperability Accelerator with Databricks Lakehouse},
-  year = {2024},
-  url = {https://github.com/vikramkavuri/}
-}
+```text
+http://localhost:4173
 ```
 
----
+Vercel should host `demo/vercel-app` as a static project. The app displays exported JSON tables from `public/data`; it is not a live Databricks workspace or a FHIR processing service.
 
-## 📄 License
+## Databricks Execution Evidence
 
-This project is licensed under the MIT License - see [LICENSE](LICENSE) for details.
+The pipeline was rerun in Azure Databricks on June 17, 2026 using serverless workflow compute. The workspace UI is private behind Microsoft Entra login, so the README uses sanitized evidence images generated from Databricks Jobs API/CLI output and SQL verification results instead of a login-gated screenshot.
 
----
+![Databricks workflow run completed successfully](docs/images/databricks-workflow-success.png)
 
-## 👨‍💻 Author
+![Databricks SQL verification for generated lakehouse tables](docs/images/databricks-sql-verification.png)
 
-<div align="center">
+This evidence shows the successful job run, all six notebook tasks, the Unity Catalog target, table row-count checks, sample Gold output, and the intentional failed quality record retained for auditability.
 
-### **VIKRAM KAVURI**
-*Healthcare Data Engineer*
+## Databricks Run
 
-[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/vikramkavuri)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/thrivikrama-rao-kavuri-7290b6147/)
-[![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:tkavuri@buffalo.edu)
+Configure the Databricks CLI, upload source data to a workspace-accessible location, then run:
 
-</div>
+```bash
+databricks bundle validate -t dev
+databricks bundle deploy -t dev
+databricks bundle run fhir_to_omop_job -t dev
+```
 
----
+Important variables:
 
-## 🙏 Acknowledgments
+| Variable | Default | Description |
+| --- | --- | --- |
+| `target_catalog` | `adb_healthcare_fhir_omop_dev` | Unity Catalog catalog for generated tables. Override this in your own workspace. |
+| `target_schema` | `healthcare_fhir_omop_dev` | Schema/database for pipeline tables. |
+| `fhir_source_path` | `/Volumes/adb_healthcare_fhir_omop_dev/healthcare_fhir_omop_dev/raw/fhir-small` | FHIR JSON/NDJSON source path. Override this after staging data in your own workspace. |
 
-- **Databricks** for the incredible Lakehouse platform
-- **HL7 International** for FHIR standards
-- **Healthcare community** for continuous feedback
-- **Open source contributors** making healthcare tech accessible
+See [docs/runbook.md](docs/runbook.md) for more detail.
 
----
+For local, public-demo, and Databricks evidence expectations, see [docs/validation.md](docs/validation.md).
 
-<div align="center">
+Current validation status: local tests pass, the Vercel demo is deployed, Databricks execution evidence is included above, and the Databricks workflow has completed successfully using serverless workflow compute.
 
-### ⭐ Star this repo to support open-source healthcare innovation!
+## Source Data
 
-**Transforming Healthcare Data, One Patient at a Time** 💊
+The repository commits only a tiny synthetic sample. Larger datasets should be staged externally:
 
-*Where Healthcare Meets Intelligence* 🏥 + 🤖 = ❤️
+- Kaggle Synthea FHIR JSON dataset: https://www.kaggle.com/datasets/krsna540/synthea-dataset-jsons-ehr
+- Kaggle FHIR 1k sample: https://www.kaggle.com/datasets/drscarlat/fhir-1ksample
 
-</div>
+Do not commit large Kaggle datasets to GitHub.
+
+## Limitations
+
+This project demonstrates production-grade engineering patterns with synthetic healthcare data. A real healthcare production platform would still need PHI governance, identity and access controls, audit logging, encryption policy, monitoring, backup and disaster recovery, cost governance, compliance review, and a signed BAA where applicable.
+
+See [docs/limitations.md](docs/limitations.md).
+
+## Author
+
+Thrivikrama Rao Kavuri
+
+GitHub: [VikramKavuri](https://github.com/VikramKavuri)
+
+LinkedIn: [thrivikrama-rao-kavuri-7290b6147](https://www.linkedin.com/in/thrivikrama-rao-kavuri-7290b6147/)
+
+## License
+
+This project is licensed under the MIT License. See [LICENSE](LICENSE).

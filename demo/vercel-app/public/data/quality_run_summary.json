@@ -1,0 +1,10 @@
+[
+  {
+    "batch_id": "local-demo-001",
+    "checked_at": "2026-06-17T09:19:57+00:00",
+    "checks_failed": 1,
+    "checks_passed": 7,
+    "checks_run": 8,
+    "failed_record_count": 1
+  }
+]

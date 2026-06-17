@@ -1,0 +1,32 @@
+[
+  {
+    "birth_datetime": "1980-03-14",
+    "ethnicity_source_value": null,
+    "fhir_patient_id": "patient-001",
+    "gender_source_value": "female",
+    "location_source_value": "Chicago, IL",
+    "person_id": 706755092,
+    "race_source_value": null,
+    "year_of_birth": 1980
+  },
+  {
+    "birth_datetime": "1973-11-02",
+    "ethnicity_source_value": null,
+    "fhir_patient_id": "patient-002",
+    "gender_source_value": "male",
+    "location_source_value": "Milwaukee, WI",
+    "person_id": 928721856,
+    "race_source_value": null,
+    "year_of_birth": 1973
+  },
+  {
+    "birth_datetime": "1992-08-22",
+    "ethnicity_source_value": null,
+    "fhir_patient_id": "patient-003",
+    "gender_source_value": "female",
+    "location_source_value": "Madison, WI",
+    "person_id": 1280122924,
+    "race_source_value": null,
+    "year_of_birth": 1992
+  }
+]

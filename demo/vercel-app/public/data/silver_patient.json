@@ -1,0 +1,38 @@
+[
+  {
+    "birth_date": "1980-03-14",
+    "city": "Chicago",
+    "deceased": false,
+    "first_name": "Ariana",
+    "gender": "female",
+    "last_name": "Stone",
+    "mrn": "MRN-10001",
+    "patient_id": "patient-001",
+    "postal_code": "60611",
+    "state": "IL"
+  },
+  {
+    "birth_date": "1973-11-02",
+    "city": "Milwaukee",
+    "deceased": false,
+    "first_name": "Jon",
+    "gender": "male",
+    "last_name": "Diaz",
+    "mrn": "MRN-10002",
+    "patient_id": "patient-002",
+    "postal_code": "53202",
+    "state": "WI"
+  },
+  {
+    "birth_date": "1992-08-22",
+    "city": "Madison",
+    "deceased": false,
+    "first_name": "Mei",
+    "gender": "female",
+    "last_name": "Chen",
+    "mrn": "MRN-10003",
+    "patient_id": "patient-003",
+    "postal_code": "53703",
+    "state": "WI"
+  }
+]

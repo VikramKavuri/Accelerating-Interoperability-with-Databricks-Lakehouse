@@ -1,0 +1,35 @@
+[
+  {
+    "encounter_class": "AMB",
+    "encounter_id": "enc-001",
+    "encounter_type_code": "185349003",
+    "encounter_type_display": "Encounter for check up",
+    "end_datetime": "2026-03-04T09:55:00Z",
+    "patient_id": "patient-001",
+    "service_provider_id": "org-northstar",
+    "start_datetime": "2026-03-04T09:15:00Z",
+    "status": "finished"
+  },
+  {
+    "encounter_class": "EMER",
+    "encounter_id": "enc-002",
+    "encounter_type_code": "50849002",
+    "encounter_type_display": "Emergency room admission",
+    "end_datetime": "2026-03-17T22:18:00Z",
+    "patient_id": "patient-002",
+    "service_provider_id": "org-northstar",
+    "start_datetime": "2026-03-17T18:05:00Z",
+    "status": "finished"
+  },
+  {
+    "encounter_class": "AMB",
+    "encounter_id": "enc-003",
+    "encounter_type_code": "185349003",
+    "encounter_type_display": "Encounter for check up",
+    "end_datetime": "2026-03-22T11:05:00Z",
+    "patient_id": "patient-003",
+    "service_provider_id": "org-northstar",
+    "start_datetime": "2026-03-22T10:30:00Z",
+    "status": "finished"
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "measurement_datetime": "2026-03-04T09:25:00Z",
+    "measurement_id": 421231485,
+    "measurement_source_code": "4548-4",
+    "measurement_source_value": "Hemoglobin A1c/Hemoglobin.total in Blood",
+    "person_id": 706755092,
+    "unit_source_value": "%",
+    "value_as_number": 8.2,
+    "visit_occurrence_id": 1279679160
+  },
+  {
+    "measurement_datetime": "2026-03-17T18:10:00Z",
+    "measurement_id": 718178751,
+    "measurement_source_code": "8480-6",
+    "measurement_source_value": "Systolic blood pressure",
+    "person_id": 928721856,
+    "unit_source_value": "mmHg",
+    "value_as_number": 156.0,
+    "visit_occurrence_id": 780949054
+  },
+  {
+    "measurement_datetime": "2026-03-22T10:45:00Z",
+    "measurement_id": 1807539963,
+    "measurement_source_code": "1988-5",
+    "measurement_source_value": "C reactive protein [Mass/volume] in Serum or Plasma",
+    "person_id": 1280122924,
+    "unit_source_value": "mg/L",
+    "value_as_number": 2.4,
+    "visit_occurrence_id": 2096945087
+  }
+]

@@ -1,0 +1,29 @@
+[
+  {
+    "age_group": "35-49",
+    "condition_count": 1,
+    "encounter_count": 1,
+    "gender": "female",
+    "medication_count": 1,
+    "patient_id": "patient-001",
+    "valid_claim_amount": 350.75
+  },
+  {
+    "age_group": "50-64",
+    "condition_count": 1,
+    "encounter_count": 1,
+    "gender": "male",
+    "medication_count": 1,
+    "patient_id": "patient-002",
+    "valid_claim_amount": 1220.5
+  },
+  {
+    "age_group": "18-34",
+    "condition_count": 1,
+    "encounter_count": 1,
+    "gender": "female",
+    "medication_count": 0,
+    "patient_id": "patient-003",
+    "valid_claim_amount": 0
+  }
+]

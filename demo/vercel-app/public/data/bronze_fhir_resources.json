@@ -1,0 +1,701 @@
+[
+  {
+    "batch_id": "local-demo-001",
+    "ingested_at": "2026-06-17T09:19:57+00:00",
+    "parse_status": "parsed",
+    "raw_hash": "0286f019a36eacff90d91e4970d47ff012f3249ca396b315f6d0e53a35610255",
+    "raw_resource_json": {
+      "address": [
+        {
+          "city": "Chicago",
+          "postalCode": "60601",
+          "state": "IL"
+        }
+      ],
+      "id": "org-northstar",
+      "name": "Northstar Community Hospital",
+      "resourceType": "Organization"
+    },
+    "resource_id": "org-northstar",
+    "resource_type": "Organization",
+    "source_file": "sampledata/fhir-small/patient_bundle_001.json"
+  },
+  {
+    "batch_id": "local-demo-001",
+    "ingested_at": "2026-06-17T09:19:57+00:00",
+    "parse_status": "parsed",
+    "raw_hash": "437ff75b439d9106f84a0e480e2f7fd7218bbf82ea4be3d7d23754ff3dcce41a",
+    "raw_resource_json": {
+      "id": "prac-evans",
+      "name": [
+        {
+          "family": "Evans",
+          "given": [
+            "Maya"
+          ]
+        }
+      ],
+      "resourceType": "Practitioner"
+    },
+    "resource_id": "prac-evans",
+    "resource_type": "Practitioner",
+    "source_file": "sampledata/fhir-small/patient_bundle_001.json"
+  },
+  {
+    "batch_id": "local-demo-001",
+    "ingested_at": "2026-06-17T09:19:57+00:00",
+    "parse_status": "parsed",
+    "raw_hash": "1ae5c8eb34bbf32f662cbefcbabbab90c2143944ab375e4a1967896fed598c9b",
+    "raw_resource_json": {
+      "address": [
+        {
+          "city": "Chicago",
+          "postalCode": "60611",
+          "state": "IL"
+        }
+      ],
+      "birthDate": "1980-03-14",
+      "gender": "female",
+      "id": "patient-001",
+      "identifier": [
+        {
+          "type": {
+            "text": "MRN"
+          },
+          "value": "MRN-10001"
+        }
+      ],
+      "name": [
+        {
+          "family": "Stone",
+          "given": [
+            "Ariana"
+          ]
+        }
+      ],
+      "resourceType": "Patient"
+    },
+    "resource_id": "patient-001",
+    "resource_type": "Patient",
+    "source_file": "sampledata/fhir-small/patient_bundle_001.json"
+  },
+  {
+    "batch_id": "local-demo-001",
+    "ingested_at": "2026-06-17T09:19:57+00:00",
+    "parse_status": "parsed",
+    "raw_hash": "24921eb908ceb80c21d7a96e70fd308fa264a4c7bfcf399820e8ec2682278e53",
+    "raw_resource_json": {
+      "class": {
+        "code": "AMB",
+        "display": "ambulatory",
+        "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode"
+      },
+      "id": "enc-001",
+      "period": {
+        "end": "2026-03-04T09:55:00Z",
+        "start": "2026-03-04T09:15:00Z"
+      },
+      "resourceType": "Encounter",
+      "serviceProvider": {
+        "reference": "Organization/org-northstar"
+      },
+      "status": "finished",
+      "subject": {
+        "reference": "Patient/patient-001"
+      },
+      "type": [
+        {
+          "coding": [
+            {
+              "code": "185349003",
+              "display": "Encounter for check up",
+              "system": "http://snomed.info/sct"
+            }
+          ]
+        }
+      ]
+    },
+    "resource_id": "enc-001",
+    "resource_type": "Encounter",
+    "source_file": "sampledata/fhir-small/patient_bundle_001.json"
+  },
+  {
+    "batch_id": "local-demo-001",
+    "ingested_at": "2026-06-17T09:19:57+00:00",
+    "parse_status": "parsed",
+    "raw_hash": "43952f111b97822d9788904aa9e60ffdc41fc3f0a33a00705e76c98b9bd5164e",
+    "raw_resource_json": {
+      "clinicalStatus": {
+        "coding": [
+          {
+            "code": "active",
+            "display": "Active",
+            "system": "http://terminology.hl7.org/CodeSystem/condition-clinical"
+          }
+        ]
+      },
+      "code": {
+        "coding": [
+          {
+            "code": "44054006",
+            "display": "Type 2 diabetes mellitus",
+            "system": "http://snomed.info/sct"
+          }
+        ],
+        "text": "Type 2 diabetes mellitus"
+      },
+      "encounter": {
+        "reference": "Encounter/enc-001"
+      },
+      "id": "cond-001",
+      "onsetDateTime": "2024-07-15T00:00:00Z",
+      "recordedDate": "2026-03-04T09:20:00Z",
+      "resourceType": "Condition",
+      "subject": {
+        "reference": "Patient/patient-001"
+      }
+    },
+    "resource_id": "cond-001",
+    "resource_type": "Condition",
+    "source_file": "sampledata/fhir-small/patient_bundle_001.json"
+  },
+  {
+    "batch_id": "local-demo-001",
+    "ingested_at": "2026-06-17T09:19:57+00:00",
+    "parse_status": "parsed",
+    "raw_hash": "a7a6a5a2f8fecba73edd793ea2a2549869362dd328f7007e1d6ed003caadd91a",
+    "raw_resource_json": {
+      "code": {
+        "coding": [
+          {
+            "code": "4548-4",
+            "display": "Hemoglobin A1c/Hemoglobin.total in Blood",
+            "system": "http://loinc.org"
+          }
+        ],
+        "text": "HbA1c"
+      },
+      "effectiveDateTime": "2026-03-04T09:25:00Z",
+      "encounter": {
+        "reference": "Encounter/enc-001"
+      },
+      "id": "obs-001",
+      "resourceType": "Observation",
+      "status": "final",
+      "subject": {
+        "reference": "Patient/patient-001"
+      },
+      "valueQuantity": {
+        "code": "%",
+        "system": "http://unitsofmeasure.org",
+        "unit": "%",
+        "value": 8.2
+      }
+    },
+    "resource_id": "obs-001",
+    "resource_type": "Observation",
+    "source_file": "sampledata/fhir-small/patient_bundle_001.json"
+  },
+  {
+    "batch_id": "local-demo-001",
+    "ingested_at": "2026-06-17T09:19:57+00:00",
+    "parse_status": "parsed",
+    "raw_hash": "9f4011661fa448afa8aab821485c74efff295505ae25f7504eb6e2d118071c6d",
+    "raw_resource_json": {
+      "authoredOn": "2026-03-04T09:40:00Z",
+      "encounter": {
+        "reference": "Encounter/enc-001"
+      },
+      "id": "medreq-001",
+      "intent": "order",
+      "medicationCodeableConcept": {
+        "coding": [
+          {
+            "code": "860975",
+            "display": "Metformin hydrochloride 500 MG Oral Tablet",
+            "system": "http://www.nlm.nih.gov/research/umls/rxnorm"
+          }
+        ],
+        "text": "Metformin 500 MG tablet"
+      },
+      "resourceType": "MedicationRequest",
+      "status": "active",
+      "subject": {
+        "reference": "Patient/patient-001"
+      }
+    },
+    "resource_id": "medreq-001",
+    "resource_type": "MedicationRequest",
+    "source_file": "sampledata/fhir-small/patient_bundle_001.json"
+  },
+  {
+    "batch_id": "local-demo-001",
+    "ingested_at": "2026-06-17T09:19:57+00:00",
+    "parse_status": "parsed",
+    "raw_hash": "658c1ed8a38b19f0cb735b03fe198d5be52e967c17adbcc5c86c3c8c773200cd",
+    "raw_resource_json": {
+      "code": {
+        "coding": [
+          {
+            "code": "83036",
+            "display": "Hemoglobin; glycosylated A1c",
+            "system": "http://www.ama-assn.org/go/cpt"
+          }
+        ]
+      },
+      "encounter": {
+        "reference": "Encounter/enc-001"
+      },
+      "id": "proc-001",
+      "performedDateTime": "2026-03-04T09:25:00Z",
+      "resourceType": "Procedure",
+      "status": "completed",
+      "subject": {
+        "reference": "Patient/patient-001"
+      }
+    },
+    "resource_id": "proc-001",
+    "resource_type": "Procedure",
+    "source_file": "sampledata/fhir-small/patient_bundle_001.json"
+  },
+  {
+    "batch_id": "local-demo-001",
+    "ingested_at": "2026-06-17T09:19:57+00:00",
+    "parse_status": "parsed",
+    "raw_hash": "99160d6b4a3d323e03b6935f69cede995c6c811fdaf82359f1bac992ae8fd965",
+    "raw_resource_json": {
+      "created": "2026-03-05",
+      "id": "claim-001",
+      "patient": {
+        "reference": "Patient/patient-001"
+      },
+      "provider": {
+        "reference": "Practitioner/prac-evans"
+      },
+      "resourceType": "Claim",
+      "status": "active",
+      "total": {
+        "currency": "USD",
+        "value": 350.75
+      },
+      "type": {
+        "coding": [
+          {
+            "code": "professional",
+            "display": "Professional",
+            "system": "http://terminology.hl7.org/CodeSystem/claim-type"
+          }
+        ]
+      }
+    },
+    "resource_id": "claim-001",
+    "resource_type": "Claim",
+    "source_file": "sampledata/fhir-small/patient_bundle_001.json"
+  },
+  {
+    "batch_id": "local-demo-001",
+    "ingested_at": "2026-06-17T09:19:57+00:00",
+    "parse_status": "parsed",
+    "raw_hash": "a2a0f22af4e356b6be7c5eb3ff060baecb8edda115fe7e6e55c77b4847592573",
+    "raw_resource_json": {
+      "address": [
+        {
+          "city": "Milwaukee",
+          "postalCode": "53202",
+          "state": "WI"
+        }
+      ],
+      "birthDate": "1973-11-02",
+      "gender": "male",
+      "id": "patient-002",
+      "identifier": [
+        {
+          "type": {
+            "text": "MRN"
+          },
+          "value": "MRN-10002"
+        }
+      ],
+      "name": [
+        {
+          "family": "Diaz",
+          "given": [
+            "Jon"
+          ]
+        }
+      ],
+      "resourceType": "Patient"
+    },
+    "resource_id": "patient-002",
+    "resource_type": "Patient",
+    "source_file": "sampledata/fhir-small/patient_bundle_001.json"
+  },
+  {
+    "batch_id": "local-demo-001",
+    "ingested_at": "2026-06-17T09:19:57+00:00",
+    "parse_status": "parsed",
+    "raw_hash": "15befa320522d89a88b3704ae7edbd552fda51ea9ace86b751a4f1d973b23c06",
+    "raw_resource_json": {
+      "class": {
+        "code": "EMER",
+        "display": "emergency",
+        "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode"
+      },
+      "id": "enc-002",
+      "period": {
+        "end": "2026-03-17T22:18:00Z",
+        "start": "2026-03-17T18:05:00Z"
+      },
+      "resourceType": "Encounter",
+      "serviceProvider": {
+        "reference": "Organization/org-northstar"
+      },
+      "status": "finished",
+      "subject": {
+        "reference": "Patient/patient-002"
+      },
+      "type": [
+        {
+          "coding": [
+            {
+              "code": "50849002",
+              "display": "Emergency room admission",
+              "system": "http://snomed.info/sct"
+            }
+          ]
+        }
+      ]
+    },
+    "resource_id": "enc-002",
+    "resource_type": "Encounter",
+    "source_file": "sampledata/fhir-small/patient_bundle_001.json"
+  },
+  {
+    "batch_id": "local-demo-001",
+    "ingested_at": "2026-06-17T09:19:57+00:00",
+    "parse_status": "parsed",
+    "raw_hash": "b87d1c919e99c7408498f46cc10029b7bda43db8867c9dd02064dd0509bee57d",
+    "raw_resource_json": {
+      "clinicalStatus": {
+        "coding": [
+          {
+            "code": "active",
+            "display": "Active",
+            "system": "http://terminology.hl7.org/CodeSystem/condition-clinical"
+          }
+        ]
+      },
+      "code": {
+        "coding": [
+          {
+            "code": "38341003",
+            "display": "Hypertensive disorder, systemic arterial",
+            "system": "http://snomed.info/sct"
+          }
+        ],
+        "text": "Hypertension"
+      },
+      "encounter": {
+        "reference": "Encounter/enc-002"
+      },
+      "id": "cond-002",
+      "recordedDate": "2026-03-17T18:30:00Z",
+      "resourceType": "Condition",
+      "subject": {
+        "reference": "Patient/patient-002"
+      }
+    },
+    "resource_id": "cond-002",
+    "resource_type": "Condition",
+    "source_file": "sampledata/fhir-small/patient_bundle_001.json"
+  },
+  {
+    "batch_id": "local-demo-001",
+    "ingested_at": "2026-06-17T09:19:57+00:00",
+    "parse_status": "parsed",
+    "raw_hash": "4447dbb7defb67c25826db54188cc90472e7ebde690062c0d9bdf96f1494316d",
+    "raw_resource_json": {
+      "code": {
+        "coding": [
+          {
+            "code": "8480-6",
+            "display": "Systolic blood pressure",
+            "system": "http://loinc.org"
+          }
+        ]
+      },
+      "effectiveDateTime": "2026-03-17T18:10:00Z",
+      "encounter": {
+        "reference": "Encounter/enc-002"
+      },
+      "id": "obs-002",
+      "resourceType": "Observation",
+      "status": "final",
+      "subject": {
+        "reference": "Patient/patient-002"
+      },
+      "valueQuantity": {
+        "code": "mm[Hg]",
+        "system": "http://unitsofmeasure.org",
+        "unit": "mmHg",
+        "value": 156
+      }
+    },
+    "resource_id": "obs-002",
+    "resource_type": "Observation",
+    "source_file": "sampledata/fhir-small/patient_bundle_001.json"
+  },
+  {
+    "batch_id": "local-demo-001",
+    "ingested_at": "2026-06-17T09:19:57+00:00",
+    "parse_status": "parsed",
+    "raw_hash": "2d1874cfe6908eb4138ea6152618c91de2292fe5eded1e20f1afc1985172e1c2",
+    "raw_resource_json": {
+      "authoredOn": "2026-03-17T20:00:00Z",
+      "encounter": {
+        "reference": "Encounter/enc-002"
+      },
+      "id": "medreq-002",
+      "intent": "order",
+      "medicationCodeableConcept": {
+        "coding": [
+          {
+            "code": "314076",
+            "display": "Lisinopril 10 MG Oral Tablet",
+            "system": "http://www.nlm.nih.gov/research/umls/rxnorm"
+          }
+        ],
+        "text": "Lisinopril 10 MG tablet"
+      },
+      "resourceType": "MedicationRequest",
+      "status": "active",
+      "subject": {
+        "reference": "Patient/patient-002"
+      }
+    },
+    "resource_id": "medreq-002",
+    "resource_type": "MedicationRequest",
+    "source_file": "sampledata/fhir-small/patient_bundle_001.json"
+  },
+  {
+    "batch_id": "local-demo-001",
+    "ingested_at": "2026-06-17T09:19:57+00:00",
+    "parse_status": "parsed",
+    "raw_hash": "403ca0002aba635d301a9f49e5faf278238ba689f6c7094ee1040c533dcf87f6",
+    "raw_resource_json": {
+      "created": "2026-03-18",
+      "id": "claim-002",
+      "patient": {
+        "reference": "Patient/patient-002"
+      },
+      "provider": {
+        "reference": "Organization/org-northstar"
+      },
+      "resourceType": "Claim",
+      "status": "active",
+      "total": {
+        "currency": "USD",
+        "value": 1220.5
+      },
+      "type": {
+        "coding": [
+          {
+            "code": "institutional",
+            "display": "Institutional",
+            "system": "http://terminology.hl7.org/CodeSystem/claim-type"
+          }
+        ]
+      }
+    },
+    "resource_id": "claim-002",
+    "resource_type": "Claim",
+    "source_file": "sampledata/fhir-small/patient_bundle_001.json"
+  },
+  {
+    "batch_id": "local-demo-001",
+    "ingested_at": "2026-06-17T09:19:57+00:00",
+    "parse_status": "parsed",
+    "raw_hash": "6d377dda8913e2e063e1814ba717fa318bb4af7936ddfccd192f76cde7b2f75a",
+    "raw_resource_json": {
+      "address": [
+        {
+          "city": "Madison",
+          "postalCode": "53703",
+          "state": "WI"
+        }
+      ],
+      "birthDate": "1992-08-22",
+      "gender": "female",
+      "id": "patient-003",
+      "identifier": [
+        {
+          "type": {
+            "text": "MRN"
+          },
+          "value": "MRN-10003"
+        }
+      ],
+      "name": [
+        {
+          "family": "Chen",
+          "given": [
+            "Mei"
+          ]
+        }
+      ],
+      "resourceType": "Patient"
+    },
+    "resource_id": "patient-003",
+    "resource_type": "Patient",
+    "source_file": "sampledata/fhir-small/resources.ndjson"
+  },
+  {
+    "batch_id": "local-demo-001",
+    "ingested_at": "2026-06-17T09:19:57+00:00",
+    "parse_status": "parsed",
+    "raw_hash": "ed185c9f9385b2e339e3769182650c4b99e87663b6cc171d78bbe67cc3861688",
+    "raw_resource_json": {
+      "class": {
+        "code": "AMB",
+        "display": "ambulatory",
+        "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode"
+      },
+      "id": "enc-003",
+      "period": {
+        "end": "2026-03-22T11:05:00Z",
+        "start": "2026-03-22T10:30:00Z"
+      },
+      "resourceType": "Encounter",
+      "serviceProvider": {
+        "reference": "Organization/org-northstar"
+      },
+      "status": "finished",
+      "subject": {
+        "reference": "Patient/patient-003"
+      },
+      "type": [
+        {
+          "coding": [
+            {
+              "code": "185349003",
+              "display": "Encounter for check up",
+              "system": "http://snomed.info/sct"
+            }
+          ]
+        }
+      ]
+    },
+    "resource_id": "enc-003",
+    "resource_type": "Encounter",
+    "source_file": "sampledata/fhir-small/resources.ndjson"
+  },
+  {
+    "batch_id": "local-demo-001",
+    "ingested_at": "2026-06-17T09:19:57+00:00",
+    "parse_status": "parsed",
+    "raw_hash": "8b048896e05bddc6014c9426caabf3c3286a12418a29c9f762dd4e7d6ad7109b",
+    "raw_resource_json": {
+      "clinicalStatus": {
+        "coding": [
+          {
+            "code": "active",
+            "display": "Active",
+            "system": "http://terminology.hl7.org/CodeSystem/condition-clinical"
+          }
+        ]
+      },
+      "code": {
+        "coding": [
+          {
+            "code": "195967001",
+            "display": "Asthma",
+            "system": "http://snomed.info/sct"
+          }
+        ],
+        "text": "Asthma"
+      },
+      "encounter": {
+        "reference": "Encounter/enc-003"
+      },
+      "id": "cond-003",
+      "recordedDate": "2026-03-22T10:35:00Z",
+      "resourceType": "Condition",
+      "subject": {
+        "reference": "Patient/patient-003"
+      }
+    },
+    "resource_id": "cond-003",
+    "resource_type": "Condition",
+    "source_file": "sampledata/fhir-small/resources.ndjson"
+  },
+  {
+    "batch_id": "local-demo-001",
+    "ingested_at": "2026-06-17T09:19:57+00:00",
+    "parse_status": "parsed",
+    "raw_hash": "2f3bd3b75f1284dc97c51913733681e367188c4ea8d1c8133ff9bd193b77f27f",
+    "raw_resource_json": {
+      "code": {
+        "coding": [
+          {
+            "code": "1988-5",
+            "display": "C reactive protein [Mass/volume] in Serum or Plasma",
+            "system": "http://loinc.org"
+          }
+        ]
+      },
+      "effectiveDateTime": "2026-03-22T10:45:00Z",
+      "encounter": {
+        "reference": "Encounter/enc-003"
+      },
+      "id": "obs-003",
+      "resourceType": "Observation",
+      "status": "final",
+      "subject": {
+        "reference": "Patient/patient-003"
+      },
+      "valueQuantity": {
+        "code": "mg/L",
+        "system": "http://unitsofmeasure.org",
+        "unit": "mg/L",
+        "value": 2.4
+      }
+    },
+    "resource_id": "obs-003",
+    "resource_type": "Observation",
+    "source_file": "sampledata/fhir-small/resources.ndjson"
+  },
+  {
+    "batch_id": "local-demo-001",
+    "ingested_at": "2026-06-17T09:19:57+00:00",
+    "parse_status": "parsed",
+    "raw_hash": "c0d441e2c1835579a6ebd361cd8f7f4400e60a544440bb6e686db180416756c9",
+    "raw_resource_json": {
+      "created": "2026-03-23",
+      "id": "claim-003",
+      "patient": {
+        "reference": "Patient/patient-003"
+      },
+      "provider": {
+        "reference": "Practitioner/prac-evans"
+      },
+      "resourceType": "Claim",
+      "status": "active",
+      "total": {
+        "currency": "USD",
+        "value": -25
+      },
+      "type": {
+        "coding": [
+          {
+            "code": "professional",
+            "display": "Professional",
+            "system": "http://terminology.hl7.org/CodeSystem/claim-type"
+          }
+        ]
+      }
+    },
+    "resource_id": "claim-003",
+    "resource_type": "Claim",
+    "source_file": "sampledata/fhir-small/resources.ndjson"
+  }
+]

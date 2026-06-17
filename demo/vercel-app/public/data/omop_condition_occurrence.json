@@ -1,0 +1,26 @@
+[
+  {
+    "condition_occurrence_id": 1489211411,
+    "condition_source_code": "44054006",
+    "condition_source_value": "Type 2 diabetes mellitus",
+    "condition_start_datetime": "2024-07-15T00:00:00Z",
+    "person_id": 706755092,
+    "visit_occurrence_id": 1279679160
+  },
+  {
+    "condition_occurrence_id": 1181246873,
+    "condition_source_code": "38341003",
+    "condition_source_value": "Hypertensive disorder, systemic arterial",
+    "condition_start_datetime": "2026-03-17T18:30:00Z",
+    "person_id": 928721856,
+    "visit_occurrence_id": 780949054
+  },
+  {
+    "condition_occurrence_id": 1005504204,
+    "condition_source_code": "195967001",
+    "condition_source_value": "Asthma",
+    "condition_start_datetime": "2026-03-22T10:35:00Z",
+    "person_id": 1280122924,
+    "visit_occurrence_id": 2096945087
+  }
+]

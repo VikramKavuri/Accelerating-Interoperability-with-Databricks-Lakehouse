@@ -1,0 +1,38 @@
+[
+  {
+    "effective_datetime": "2026-03-04T09:25:00Z",
+    "encounter_id": "enc-001",
+    "observation_code": "4548-4",
+    "observation_display": "Hemoglobin A1c/Hemoglobin.total in Blood",
+    "observation_id": "obs-001",
+    "observation_system": "http://loinc.org",
+    "patient_id": "patient-001",
+    "status": "final",
+    "value_number": 8.2,
+    "value_unit": "%"
+  },
+  {
+    "effective_datetime": "2026-03-17T18:10:00Z",
+    "encounter_id": "enc-002",
+    "observation_code": "8480-6",
+    "observation_display": "Systolic blood pressure",
+    "observation_id": "obs-002",
+    "observation_system": "http://loinc.org",
+    "patient_id": "patient-002",
+    "status": "final",
+    "value_number": 156.0,
+    "value_unit": "mmHg"
+  },
+  {
+    "effective_datetime": "2026-03-22T10:45:00Z",
+    "encounter_id": "enc-003",
+    "observation_code": "1988-5",
+    "observation_display": "C reactive protein [Mass/volume] in Serum or Plasma",
+    "observation_id": "obs-003",
+    "observation_system": "http://loinc.org",
+    "patient_id": "patient-003",
+    "status": "final",
+    "value_number": 2.4,
+    "value_unit": "mg/L"
+  }
+]

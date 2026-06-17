@@ -1,0 +1,65 @@
+resources:
+  jobs:
+    fhir_to_omop_job:
+      name: fhir-to-omop-lakehouse-${bundle.target}
+      max_concurrent_runs: 1
+      tasks:
+        - task_key: 01_ingest_bronze
+          notebook_task:
+            notebook_path: ../../databricks/notebooks/01_ingest_bronze.py
+            base_parameters:
+              target_catalog: ${var.target_catalog}
+              target_schema: ${var.target_schema}
+              source_path: ${var.fhir_source_path}
+              batch_id: "{{job.run_id}}"
+
+        - task_key: 02_parse_silver
+          depends_on:
+            - task_key: 01_ingest_bronze
+          notebook_task:
+            notebook_path: ../../databricks/notebooks/02_parse_silver.py
+            base_parameters:
+              target_catalog: ${var.target_catalog}
+              target_schema: ${var.target_schema}
+              batch_id: "{{job.run_id}}"
+
+        - task_key: 03_run_quality_checks
+          depends_on:
+            - task_key: 02_parse_silver
+          notebook_task:
+            notebook_path: ../../databricks/notebooks/03_run_quality_checks.py
+            base_parameters:
+              target_catalog: ${var.target_catalog}
+              target_schema: ${var.target_schema}
+              batch_id: "{{job.run_id}}"
+
+        - task_key: 04_build_omop
+          depends_on:
+            - task_key: 03_run_quality_checks
+          notebook_task:
+            notebook_path: ../../databricks/notebooks/04_build_omop.py
+            base_parameters:
+              target_catalog: ${var.target_catalog}
+              target_schema: ${var.target_schema}
+              batch_id: "{{job.run_id}}"
+
+        - task_key: 05_publish_gold
+          depends_on:
+            - task_key: 04_build_omop
+          notebook_task:
+            notebook_path: ../../databricks/notebooks/05_publish_gold.py
+            base_parameters:
+              target_catalog: ${var.target_catalog}
+              target_schema: ${var.target_schema}
+              batch_id: "{{job.run_id}}"
+
+        - task_key: 06_generate_run_summary
+          depends_on:
+            - task_key: 05_publish_gold
+          notebook_task:
+            notebook_path: ../../databricks/notebooks/06_generate_run_summary.py
+            base_parameters:
+              target_catalog: ${var.target_catalog}
+              target_schema: ${var.target_schema}
+              source_path: ${var.fhir_source_path}
+              batch_id: "{{job.run_id}}"

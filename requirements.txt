@@ -1,0 +1,2 @@
+# Local demo and tests use only the Python standard library.
+# Databricks workspace execution uses the Databricks Runtime Spark/Delta stack.

@@ -1,0 +1,17 @@
+[
+  {
+    "age_group": "18-34",
+    "condition_display": "Asthma",
+    "patient_count": 1
+  },
+  {
+    "age_group": "50-64",
+    "condition_display": "Hypertensive disorder, systemic arterial",
+    "patient_count": 1
+  },
+  {
+    "age_group": "35-49",
+    "condition_display": "Type 2 diabetes mellitus",
+    "patient_count": 1
+  }
+]

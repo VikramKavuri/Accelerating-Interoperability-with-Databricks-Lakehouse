@@ -1,0 +1,74 @@
+[
+  {
+    "batch_id": "local-demo-001",
+    "ingested_at": "2026-06-17T09:19:57+00:00",
+    "resource_count": 20,
+    "resource_type": "Claim",
+    "resource_type_count": 3,
+    "source_file_count": 2
+  },
+  {
+    "batch_id": "local-demo-001",
+    "ingested_at": "2026-06-17T09:19:57+00:00",
+    "resource_count": 20,
+    "resource_type": "Condition",
+    "resource_type_count": 3,
+    "source_file_count": 2
+  },
+  {
+    "batch_id": "local-demo-001",
+    "ingested_at": "2026-06-17T09:19:57+00:00",
+    "resource_count": 20,
+    "resource_type": "Encounter",
+    "resource_type_count": 3,
+    "source_file_count": 2
+  },
+  {
+    "batch_id": "local-demo-001",
+    "ingested_at": "2026-06-17T09:19:57+00:00",
+    "resource_count": 20,
+    "resource_type": "MedicationRequest",
+    "resource_type_count": 2,
+    "source_file_count": 2
+  },
+  {
+    "batch_id": "local-demo-001",
+    "ingested_at": "2026-06-17T09:19:57+00:00",
+    "resource_count": 20,
+    "resource_type": "Observation",
+    "resource_type_count": 3,
+    "source_file_count": 2
+  },
+  {
+    "batch_id": "local-demo-001",
+    "ingested_at": "2026-06-17T09:19:57+00:00",
+    "resource_count": 20,
+    "resource_type": "Organization",
+    "resource_type_count": 1,
+    "source_file_count": 2
+  },
+  {
+    "batch_id": "local-demo-001",
+    "ingested_at": "2026-06-17T09:19:57+00:00",
+    "resource_count": 20,
+    "resource_type": "Patient",
+    "resource_type_count": 3,
+    "source_file_count": 2
+  },
+  {
+    "batch_id": "local-demo-001",
+    "ingested_at": "2026-06-17T09:19:57+00:00",
+    "resource_count": 20,
+    "resource_type": "Practitioner",
+    "resource_type_count": 1,
+    "source_file_count": 2
+  },
+  {
+    "batch_id": "local-demo-001",
+    "ingested_at": "2026-06-17T09:19:57+00:00",
+    "resource_count": 20,
+    "resource_type": "Procedure",
+    "resource_type_count": 1,
+    "source_file_count": 2
+  }
+]

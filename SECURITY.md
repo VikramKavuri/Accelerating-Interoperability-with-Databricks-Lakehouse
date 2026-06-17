@@ -1,6 +1,10 @@
 # Security Policy
 
-## Reporting a Vulnerability
+## Reporting A Vulnerability
 
-Please email bugbounty@databricks.com to report any security vulnerabilities. We will acknowledge receipt of your vulnerability and strive to send you regular updates about our progress. If you're curious about the status of your disclosure please feel free to email us again. If you want to encrypt your disclosure email, you can use [this PGP key](https://keybase.io/arikfr/key.asc).
+Please report security issues privately to the repository owner instead of
+opening a public issue. Include the affected file, reproduction steps, and any
+recommended mitigation.
 
+Do not include real protected health information, credentials, access tokens,
+or Databricks workspace secrets in issues, pull requests, sample data, or logs.

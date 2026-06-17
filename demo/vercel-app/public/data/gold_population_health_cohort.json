@@ -1,0 +1,14 @@
+[
+  {
+    "age_group": "35-49",
+    "cohort_reason": "type 2 diabetes mellitus",
+    "gender": "female",
+    "patient_id": "patient-001"
+  },
+  {
+    "age_group": "50-64",
+    "cohort_reason": "hypertensive disorder, systemic arterial",
+    "gender": "male",
+    "patient_id": "patient-002"
+  }
+]

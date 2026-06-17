@@ -1,0 +1,12 @@
+[
+  {
+    "encounter_id": "enc-001",
+    "patient_id": "patient-001",
+    "performed_datetime": "2026-03-04T09:25:00Z",
+    "procedure_code": "83036",
+    "procedure_display": "Hemoglobin; glycosylated A1c",
+    "procedure_id": "proc-001",
+    "procedure_system": "http://www.ama-assn.org/go/cpt",
+    "status": "completed"
+  }
+]

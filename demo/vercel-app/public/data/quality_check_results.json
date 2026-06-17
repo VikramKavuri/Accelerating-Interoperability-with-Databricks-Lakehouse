@@ -1,0 +1,66 @@
+[
+  {
+    "batch_id": "local-demo-001",
+    "check_name": "patient_id_not_null",
+    "checked_at": "2026-06-17T09:19:57+00:00",
+    "failed_count": 0,
+    "status": "pass",
+    "table_name": "silver_patient"
+  },
+  {
+    "batch_id": "local-demo-001",
+    "check_name": "patient_birth_date_valid",
+    "checked_at": "2026-06-17T09:19:57+00:00",
+    "failed_count": 0,
+    "status": "pass",
+    "table_name": "silver_patient"
+  },
+  {
+    "batch_id": "local-demo-001",
+    "check_name": "encounter_has_patient",
+    "checked_at": "2026-06-17T09:19:57+00:00",
+    "failed_count": 0,
+    "status": "pass",
+    "table_name": "silver_encounter"
+  },
+  {
+    "batch_id": "local-demo-001",
+    "check_name": "condition_has_patient",
+    "checked_at": "2026-06-17T09:19:57+00:00",
+    "failed_count": 0,
+    "status": "pass",
+    "table_name": "silver_condition"
+  },
+  {
+    "batch_id": "local-demo-001",
+    "check_name": "observation_has_code",
+    "checked_at": "2026-06-17T09:19:57+00:00",
+    "failed_count": 0,
+    "status": "pass",
+    "table_name": "silver_observation"
+  },
+  {
+    "batch_id": "local-demo-001",
+    "check_name": "claim_amount_non_negative",
+    "checked_at": "2026-06-17T09:19:57+00:00",
+    "failed_count": 1,
+    "status": "fail",
+    "table_name": "silver_claim"
+  },
+  {
+    "batch_id": "local-demo-001",
+    "check_name": "duplicate_resource_check",
+    "checked_at": "2026-06-17T09:19:57+00:00",
+    "failed_count": 0,
+    "status": "pass",
+    "table_name": "bronze_fhir_resources"
+  },
+  {
+    "batch_id": "local-demo-001",
+    "check_name": "referential_integrity_check",
+    "checked_at": "2026-06-17T09:19:57+00:00",
+    "failed_count": 0,
+    "status": "pass",
+    "table_name": "clinical_references"
+  }
+]
